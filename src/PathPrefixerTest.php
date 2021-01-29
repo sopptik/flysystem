@@ -70,6 +70,19 @@ class PathPrefixerTest extends TestCase
     /**
      * @test
      */
+    public function prefixing_root_for_a_directory(): void
+    {
+        $prefixer = new PathPrefixer('/');
+
+        $path = $prefixer->prefixDirectoryPath('something');
+        $this->assertEquals('/something/', $path);
+        $path = $prefixer->prefixDirectoryPath('');
+        $this->assertEquals('/', $path);
+    }
+
+    /**
+     * @test
+     */
     public function prefixing_for_a_directory_without_a_prefix(): void
     {
         $prefixer = new PathPrefixer('');
